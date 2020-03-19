@@ -3,6 +3,7 @@ body {
     max-width: 1280px;
     margin: auto;
     font-family: 'Baloo 2', cursive;
+    background-color: indianred;
 }
 
 header {
@@ -23,11 +24,13 @@ header p {
 .white a:visited {
     color: white;
 }
+
 header nav img {
     border-radius: 50%;
 }
 
-a:link, /* es ist auch einfach nur */
+a:link,
+/* es ist auch einfach nur */
 a:visited {
     color: black;
 }
@@ -84,7 +87,9 @@ footer .next {
     main {
         max-width: 90%;
     }
+
     header img.banner {
-        width: 100vw; /* vw = view port width*/
+        width: 100vw;
+        /* vw = view port width hier 100% */
     }
 }
