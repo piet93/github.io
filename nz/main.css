@@ -27,6 +27,21 @@ header nav img {
     border-radius: 50%;
 }
 
-a {
+a:link, /* es ist auch einfach nur */
+a:visited {
     color: black;
+}
+
+header nav address {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+main {
+    max-width: 70%;
+    margin: auto;
+}
+
+main p {
+    text-align: justify;
 }
