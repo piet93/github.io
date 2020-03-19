@@ -7,3 +7,10 @@ body {
 header {
     text-align: center;
 }
+header p {
+    font-size: 0.8em; /*refernzgröße 0.8 = 80% kann man aber auc in pixel; besser aber in em weil browser auflösung*/
+    font-weight: bold;
+    text-align: right;
+    padding-right: 1em;
+    margin-top: -2em;
+}
