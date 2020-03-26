@@ -13,3 +13,4 @@ let fullname = "Jeffrey 'The Dude' Lebowski";
 fullname = 'Jeffrey "The Dude" Lebowski'; // geht beides
 console.log(fullname)
 
+
