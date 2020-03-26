@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript 101</title>
-    <script src="hello.js"></script>
+    <script defer src="hello.js"></script> <!-- defer brauchts damit erster html geladen wird -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Javascript 101</h1>
     <p id="pFirst">Erster Absatz</p>
-    <p class="indent">weiter Absätze</p>
-    <p class="indent">weiter Absätze</p>
-    <p class="indent">weiter Absätze</p>
-    <p class="indent">weiter Absätze</p>
+    <p class="indent" data-lat="47" data-lng="11">weiter Absätze</p>
+    <p class="indent" data-lat="48" data-lng="11">weiter Absätze</p>
+    <p class="indent" data-lat="41" data-lng="11">weiter Absätze</p>
+    <p class="indent" data-lat="43" data-lng="11">weiter Absätze</p>
+    <p>weiterer Absatz</p>
 </body>
 
 </html>

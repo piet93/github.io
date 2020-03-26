@@ -72,4 +72,23 @@ let users = [
     { firstname: "Ale", lastname: "Lenk", birthYear: 1980},
 ];
 
-console.log(users);
+console.log(users); // hier hatter schleife mit funktion
+
+
+let firstParagraph = document.querySelector("#pFirst");
+// console.log(firstParagraph);
+firstParagraph.innerHTML = "Test";
+firstParagraph.style.color = "red";
+
+let indetedParas = document.querySelectorAll(".indent"); // wenn nicht querySelectorAll dann wird immer nur das erste Benutzt
+console.log(indetedParas);
+indetedParas.innerHTML = "Test2";
+indetedParas.forEach((para, index) => {
+    console.log(`Data attribut LAT ${para.CDATA_SECTION_NODE.lat}`);
+    para.innerHTML = `Absatz ${index}`;
+    if ( index % 2 == 0) {
+        para.style.color = "red";
+    } else {
+        para.style.color = "blue";
+    }
+});
