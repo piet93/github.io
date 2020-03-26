@@ -34,3 +34,42 @@ console.log(user.Firstname);
 user.highscore = 200;
 user["highscore ever"] = 400
 console.log(user);
+
+// let myAge = prompt("Wie alt bist du?");
+// console.log(`Du bist ${myAge} alt.`);
+
+// if (myAge > 18) {
+//     console.log("Glückwunsch über 18");
+// } else {
+//     console.log("Leider unter 18");
+// }
+
+for (let i = 0; i < 10; i++) {
+    console.log(`Schleife ${i}`);
+}
+
+participants.forEach(participants => {
+    console.log(`Teilnehmer*in ${participants}`)
+});
+
+// Fuktionen
+
+function showAge(birthYear) {
+    console.log(`Du bist ca. ${2020 - birthYear} Jahre alt.`);
+}
+
+showAge(1993)
+
+function calcAge(birthYear) {
+    return 2020 - birthYear;
+}
+
+console.log(`Max ist ${calcAge(1977)} Jahre alt (ca.)`);
+
+let users = [
+    { firstname: "John", lastname: "Smith", birthYear: 1960},
+    { firstname: "Peter", lastname: "Halle", birthYear: 1970},
+    { firstname: "Ale", lastname: "Lenk", birthYear: 1980},
+];
+
+console.log(users);
