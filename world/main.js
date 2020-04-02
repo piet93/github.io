@@ -14,4 +14,18 @@ L.control.layers({
     "OpenStreetMap.Mapnik" : L.tileLayer.provider("OpenStreetMap.Mapnik"),
     "Thunderforest.SpinalMap" : L.tileLayer.provider("Thunderforest.SpinalMap"),
     "Stamen.Watercolor" : L.tileLayer.provider("Stamen.Terrain"),
+    "Esri.WorldImagery" : L.tileLayer.provider("Esri.WorldImagery"),
+    "MtbMap" : L.tileLayer.provider("MtbMap"),
 }).addTo(map);
+
+L.marker([0,0]).addTo(map);
+
+console.log(CONFIRMED)
+
+for (let i = 1; i < CONFIRMED.length; i++) {
+    const row = CONFIRMED[i];
+    // console.log(row[2],row[3]);
+    let val = row[row.length-1];
+    let mrk = L.marker([row[2], row[3]]).addTo(map);
+    mrk.bindPopup(`${row[0]} ${row[1]}: ${val}`);
+}
