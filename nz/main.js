@@ -10,7 +10,7 @@ L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 }).addTo(mymap);
 
 //Marker für River Safari und weiteres PopUp dazu:
-var markerRiverSafari = L.marker([-43.853582, 169.054602]).addTo(mymap);
+var markerRiverSafari = L.marker([-43.880833, 169.040278]).addTo(mymap);
 markerRiverSafari.bindPopup("<b>Haast River Safari!</b><br>Experience real New Zealand.").openPopup();
 
 //Marker für Stadt mit PopUp:
