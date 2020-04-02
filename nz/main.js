@@ -1,43 +1,29 @@
-// alert("Hallo Welt")
-
-
-let map = document.querySelector("#map");
-let lat = map.dataset.lat;
-let lng = map.dataset.lng;
-
-
-let mymap = L.map(map).setView([lat, lng], 13);
-
-// from leaflet coordinates for pancake rocks?!
-
-
-let title = map.dataset.title;
-console.log(title)
+var mymap = L.map('map').setView([-43.880833, 169.040278], 13);
 
 L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-    maxZoom: 17,
-    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>tributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https:/ntopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>tributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style &copy; <a href="https:/ntopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
 }).addTo(mymap);
 
-// marks location on set location. also able to create a line or polygon object
+//Marker für River Safari und weiteres PopUp dazu:
+var markerRiverSafari = L.marker([-43.853582, 169.054602]).addTo(mymap);
+markerRiverSafari.bindPopup("<b>Haast River Safari!</b><br>Experience real New Zealand.").openPopup();
 
-let marker = L.marker([lat, lng]).addTo(mymap);
+//Marker für Stadt mit PopUp:
+var markerStadt = L.marker([-43.880833, 169.040278]).addTo(mymap);
+markerStadt.bindPopup("<b>Haast!</b><br>a cosy and quite town to stay.").openPopup();
 
-marker.bindPopup("<b>Pancake Rocks</b><br>Come get yo self some pancakes").openPopup();
+// Beim Klicken auf beliebigen Punkt auf der Karte werden entsprechende Koordinaten angezeigt:
+var popup = L.popup();
 
-/*var popup = L.popup()
-    .setLatLng([lat, lng])
-    .setContent("Displayed place of interest here?")
-    .openOn(mymap);
-*/
-
-var circle = L.circle([-42.118611, 171.326944], {
-    color: 'red',
-    fillColor: '#f04',
-    fillOpacity: 0.5,
-    radius: 300
-}).addTo(mymap);
-
-// 42.118611, 171.326944
-
-circle.bindPopup("<b>Pancake Rocks</b><br>Deposition of calcareous sediments").openPopup(); //
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(mymap);
+}
+mymap.on('click', onMapClick);
