@@ -12,6 +12,6 @@ let map = L.map("map", {
 L.control.layers({
     "OpenTopoMap" : startLayer,
     "OpenStreetMap.Mapnik" : L.tileLayer.provider("OpenStreetMap.Mapnik"),
-
-
-}).addTo(map)
+    "Thunderforest.SpinalMap" : L.tileLayer.provider("Thunderforest.SpinalMap"),
+    "Stamen.Watercolor" : L.tileLayer.provider("Stamen.Terrain"),
+}).addTo(map);
