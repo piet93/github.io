@@ -32,6 +32,10 @@ let drawCircles = function () {
     let label = options[options.selectedIndex].text;
     //console.log(value,label,options);
 
+    if (value === "conirmed") {
+        data = CONFIRMED
+        // fehlt fertig if abfrage danach aufnahme
+    }
     // Datum & Thema anzeigen anzeigen
     document.querySelector("#datum").innerHTML = `am ${header[index]} - ${label}`;
 
@@ -58,7 +62,7 @@ let drawCircles = function () {
     }
 };
 
-document.querySelector("#pulldown").onchange = function() {
+document.querySelector("#pulldown").onchange = function () {
     drawCircles();
 };
 
