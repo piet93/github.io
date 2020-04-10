@@ -97,19 +97,28 @@ drawCircles();
 
 // animation button
 let playButton = document.querySelector("#play");
+let runningAnimation = null;
 
 playButton.onclick = function () {
 
     let value = slider.min;
 
-    let runningAnimation = null;
-    runningAnimation = window.setInterval(function () {
-        slider.value = value;
-        drawCircles();
-        value++;
-        console.log("klick")
-        if (value > slider.max) {
-            window.clearInterval(runningAnimation);
-        }
-    }, 250)
+    playButton.value = "⏸"
+    if (runningAnimation) {
+        window.clearInterval(runningAnimation);
+        playButton.value = "▶️"
+        runningAnimation = null;
+    } else {
+
+        runningAnimation = window.setInterval(function () {
+            slider.value = value;
+            drawCircles();
+            value++;
+            //console.log("klick")
+            if (value > slider.max) {
+                window.clearInterval(runningAnimation);
+                playButton.value = "▶";
+            }
+        }, 250)
+    }
 }
