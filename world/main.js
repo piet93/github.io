@@ -78,8 +78,11 @@ document.querySelector("#pulldown").onchange = function () {
 };
 
 let slider = document.querySelector("#slider");
-slider.min = 4
-slider.max = CONFIRMED[0].LENGTH - 1;
+slider.min = 4;
+slider.max = CONFIRMED[0].length - 1;
 slider.step = 1;
 slider.value = slider.max;
+slider.onchange = function () {
+    drawCircles();
+}
 drawCircles();
