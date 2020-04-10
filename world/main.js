@@ -1,7 +1,7 @@
 let startLayer = L.tileLayer.provider("OpenTopoMap");
 
 let map = L.map("map", {
-    center: [0, 0],
+    center: [30, 0],
     zoom: 2,
     layers: [
         startLayer
@@ -33,11 +33,17 @@ let drawCircles = function () {
     //console.log(value,label,options);
 
     if (value === "conirmed") {
-        data = CONFIRMED
-        // fehlt fertig if abfrage danach aufnahme
+        data = CONFIRMED;
+    } else if (value === "deaths") {
+        data = DEATHS;
+    } else {
+        data = RECOVERED
     }
+    
     // Datum & Thema anzeigen anzeigen
     document.querySelector("#datum").innerHTML = `am ${header[index]} - ${label}`;
+
+    circleGroup.clearLayers();
 
     //console.log(data);
     for (let i = 1; i < data.length; i++) {
