@@ -43,11 +43,15 @@ let drawCircles = function () {
         data = RECOVERED
         color = "#3D9970"
     }
-    
+
     // Datum & Thema anzeigen anzeigen
     document.querySelector("#datum").innerHTML = `am ${header[index]} - ${label}`;
 
     circleGroup.clearLayers();
+
+    data.sort(function compareNumbers(row1, row2) {
+        return row2[index] - row1[index];
+    });
 
     //console.log(data);
     for (let i = 1; i < data.length; i++) {
@@ -57,6 +61,9 @@ let drawCircles = function () {
         let lat = row[2];
         let lng = row[3];
         let val = row[index];
+        if (val == 0) {
+            continue;
+        }
         //let mrk = L.marker([lat,lng]).addTo(map);
         //mrk.bindPopup(`${reg}: ${val}`);
 
@@ -86,3 +93,23 @@ slider.onchange = function () {
     drawCircles();
 }
 drawCircles();
+
+
+// animation button
+let playButton = document.querySelector("#play");
+
+playButton.onclick = function () {
+
+    let value = slider.min;
+
+    let runningAnimation = null;
+    runningAnimation = window.setInterval(function () {
+        slider.value = value;
+        drawCircles();
+        value++;
+        console.log("klick")
+        if (value > slider.max) {
+            window.clearInterval(runningAnimation);
+        }
+    }, 250)
+}
