@@ -98,3 +98,30 @@ L.geoJson.ajax(heritage, {
         `);
     }
 }).addTo(map);
+
+
+let wandern = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WANDERWEGEOGD&srsName=EPSG:4326&outputFormat=json";
+
+L.geoJson.ajax(wandern, {
+    style: function (feature) {
+        if (feature.properties.KATEGORIE === "StWW") {
+            return {
+                color: "black",
+                weight: 5,
+                dashArray: "10"
+            };
+            
+        }else {
+            return {
+                color: "black",
+                weight: 3,
+                dashArray: "0,5"
+            };
+        }
+        
+    },
+    onEachFeature: function (feature, layer) {
+        //console.log("Feature wandern", feature);
+        layer.bindPopup(`<h3>${feature.properties.BEZ_TEXT}</h3>`);
+    }
+}).addTo(walkGroup);
