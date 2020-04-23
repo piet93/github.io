@@ -29,12 +29,12 @@ let awsUrl = "https://aws.openweb.cc/stations";
 
 let aws = L.geoJson.ajax(awsUrl, {
 
-    filter: function(feature) {
+    filter: function (feature) {
         console.log("Feature in filter II: ", feature);
         return feature.properties.hasOwnProperty('LT') === true;
     },
 
-  
+
     pointToLayer: function (point, latlng) {
         // console.log("point: ", point);
         let marker = L.marker(latlng).bindPopup(`
