@@ -58,3 +58,43 @@ sights.on("data:loaded", function () {
     // console.log('data loaded!');
     map.fitBounds(sightGroup.getBounds());
 });
+
+let heritage = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WELTKULTERBEOGD&srsName=EPSG:4326&outputFormat=json";
+
+L.geoJson.ajax(heritage, {
+    filter: function (feature) {
+        // console.log("Feature in filter: ", feature);
+        return feature.properties.TYP == 1;
+    },
+    style: function () {
+        return {
+            color: "red",
+            fillOpacity: 0.3
+        };
+    },
+    onEachFeature: function (feature, layer) {
+        // console.log("Feature: ", feature);
+        layer.bindPopup(`<h3>${feature.properties.NAME}</h3>
+        <p>${feature.properties.INFO}</p>
+        `);
+    }
+}).addTo(map);
+
+L.geoJson.ajax(heritage, {
+    filter: function (feature) {
+        // console.log("Feature in filter: ", feature);
+        return feature.properties.TYP == 2;
+    },
+    style: function () {
+        return {
+            color: "yellow",
+            fillOpacity: 0.3
+        };
+    },
+    onEachFeature: function (feature, layer) {
+        // console.log("Feature: ", feature);
+        layer.bindPopup(`<h3>${feature.properties.NAME}</h3>
+        <p>${feature.properties.INFO}</p>
+        `);
+    }
+}).addTo(map);
