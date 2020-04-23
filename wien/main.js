@@ -110,15 +110,15 @@ L.geoJson.ajax(wandern, {
                 weight: 5,
                 dashArray: "10"
             };
-            
-        }else {
+
+        } else {
             return {
                 color: "black",
                 weight: 3,
                 dashArray: "0,5"
             };
         }
-        
+
     },
     onEachFeature: function (feature, layer) {
         //console.log("Feature wandern", feature);
