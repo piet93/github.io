@@ -8,6 +8,8 @@ let map = L.map("map", {
     ]
 });
 
+let awsLayer = L.featureGroup().addTo(map);
+
 L.control.layers({
     "BasemapAT.grau": startLayer,
     "BasemapAT": L.tileLayer.provider("BasemapAT"),
@@ -23,3 +25,30 @@ L.control.layers({
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
+
+
+let aws = L.geoJson.ajax(awsUrl, {
+
+    filter: function(feature) {
+        console.log("Feature in filter II: ", feature);
+        return feature.properties.hasOwnProperty('LT') === true;
+    },
+
+  
+    pointToLayer: function (point, latlng) {
+        // console.log("point: ", point);
+        let marker = L.marker(latlng).bindPopup(`
+        <h3>${point.properties.name} ${point.geometry.coordinates[2]} m</h3>
+        <ul>
+        <li>Position: Lat: ${point.geometry.coordinates[1]}/Lng: ${point.geometry.coordinates[0]}</li>
+        <li>Datum: ${point.properties.date}</li>
+        <li>Lufttemperatur: ${point.properties.LT} °C</li>
+        <li>Windgeschwindigkeit: ${point.properties.WG} m/s</li>
+        <li>Relative Luftfeuchte: ${point.properties.RH} % </li>
+        <li>Schneehöhe: ${point.properties.HS} cm</li>
+        <li><a href='https://lawine.tirol.gv.at/data/grafiken/1100/standard/tag/${point.properties.plot}.png'>Link</a></li>
+        </ul>
+        `);
+        return marker;
+    }
+}).addTo(awsLayer);
