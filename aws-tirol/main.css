@@ -51,9 +51,9 @@ main h2 {
     display: inline;
     text-shadow:
         -1px -1px 0 white,
-         1px -1px 0 white,
-        -1px  1px 0 white,
-         1px  1px 0 white
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white
 }
 
 .label-wind {
@@ -62,7 +62,7 @@ main h2 {
     display: inline;
     text-shadow:
         -1px -1px 0 black,
-         1px -1px 0 black,
-        -1px  1px 0 black,
-         1px  1px 0 black
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black
 }
