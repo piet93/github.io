@@ -121,23 +121,24 @@ let drawWind = function(jsonData) {
     }).addTo(overlay.wind);
 };
 
-let drawSnow = funtion(jsonData) {
+let drawSnow = function(jsonData) {
+    console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
         filter: function(feature) {
             return feature.properties.HS;
         },
-        pointToLayer: funtion(feature, latlng) {
-            let color = getColor(feature.properties.HS, Colors.snow);
+        pointToLayer: function(feature, latlng){
+            let color = getColor(feature.properties.HS, COLORS.snow);
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]} m)`,
                 icon: L.divIcon({
-                    html: `<div class ="label-snow" style="background-color:${color}">${feature.properties.HStoFixed(1)}</div>`,
-                    className: "ignore_me" //
+                    html: `<div class ="label-snow" style="background-color:${color}">${feature.properties.HS.toFixed(1)}</div>`,
+                    className: "ignore-me" //dirty hack
                 })
             })
         }
-    })
-}
+    }).addTo(overlay.snow);
+};
 
 
 
@@ -145,6 +146,7 @@ aws.on("data:loaded", function() {
     //console.log(aws.toGeoJSON());
     drawTemperature(aws.toGeoJSON());
     drawWind(aws.toGeoJSON());
+    drawSnow(aws.toGeoJSON());
     map.fitBounds(overlay.stations.getBounds());
 
     overlay.wind.addTo(map);
