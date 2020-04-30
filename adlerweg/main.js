@@ -8,7 +8,10 @@ let map = L.map("map", {
     ]
 });
 
-let overlay = {adlerblicke: L.featureGroup()}
+let overlay = {
+    adlerblicke: L.featureGroup(),
+    etappen: L.featureGroup()
+};
 
 L.control.layers({
     "BasemapAT.grau": L.tileLayer.provider("BasemapAT.grau"),
@@ -23,7 +26,8 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.overlay")
     ])
 }, {
-    "Adlerblicke": overlay.adlerblicke
+    "Adlerblicke": overlay.adlerblicke,
+    "Adlerweg Etappen": overlay.etappen
 }).addTo(map);
 
 //console.log(ETAPPEN)
@@ -46,6 +50,12 @@ overlay.adlerblicke.addTo(map);
 
 let gpx = new L.GPX("gpx/AdlerwegEtappe01.gpx", {
     async: true,
+    polyline_options: {
+        color: 'black',
+        weight: 3,
+        lineCap: 'round',
+        dashArray: [2, 5]
+    },
     marker_options: {
         startIconUrl: 'icon/number/number_1.png',
         endIconUrl: 'icon/finish.png',
@@ -53,8 +63,9 @@ let gpx = new L.GPX("gpx/AdlerwegEtappe01.gpx", {
         iconSize: [32, 37],
         iconAnchor: [16, 37],
       }
-})
+});
 
 gpx.on("loaded", function(evt) {
     map.fitBounds(evt.target.getBounds());
-}).addTo(map);
+}).addTo(overlay.etappen);
+overlay.etappen.addTo(map);
