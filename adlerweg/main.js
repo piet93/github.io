@@ -43,3 +43,16 @@ for (const blick of ADLERBLICKE) {
     mrk.bindPopup(`Standort ${blick.standort} (${blick.seehoehe}m)`).openPopup();  
 };
 overlay.adlerblicke.addTo(map);
+
+let gpx = new L.GPX("gpx/AdlerwegEtappe01.gpx", {
+    async: true,
+    marker_options: {
+        startIconUrl: 'icon/number/number_1.png',
+        endIconUrl: 'icon/finish.png',
+        shadowUrl: null
+      }
+})
+
+gpx.on("loaded", function(evt) {
+    map.fitBounds(evt.target.getBounds());
+}).addTo(map);
