@@ -49,7 +49,9 @@ let gpx = new L.GPX("gpx/AdlerwegEtappe01.gpx", {
     marker_options: {
         startIconUrl: 'icon/number/number_1.png',
         endIconUrl: 'icon/finish.png',
-        shadowUrl: null
+        shadowUrl: null,
+        iconSize: [32, 37],
+        iconAnchor: [16, 37],
       }
 })
 
