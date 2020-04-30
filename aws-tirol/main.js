@@ -9,7 +9,8 @@ let map = L.map("map", {
 let overlay = {
     stations: L.featureGroup(),
     temperature: L.featureGroup(),
-    wind: L.featureGroup()
+    wind: L.featureGroup(),
+    snow: L.featureGroup()
 }
 
 L.control.layers({
@@ -27,7 +28,8 @@ L.control.layers({
 }, {
     "Wetterstationen Tirol": overlay.stations,
     "Temperatur (°C)": overlay.temperature,
-    "Windgeschwindigkeit (km/h)": overlay.wind
+    "Windgeschwindigkeit (km/h)": overlay.wind,
+    "Scheehöhe (cm)": overlay.snow
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
@@ -118,6 +120,26 @@ let drawWind = function(jsonData) {
         }
     }).addTo(overlay.wind);
 };
+
+let drawSnow = funtion(jsonData) {
+    L.geoJson(jsonData, {
+        filter: function(feature) {
+            return feature.properties.HS;
+        },
+        pointToLayer: funtion(feature, latlng) {
+            let color = getColor(feature.properties.HS, Colors.snow);
+            return L.marker(latlng, {
+                title: `${feature.properties.name} (${feature.geometry.coordinates[2]} m)`,
+                icon: L.divIcon({
+                    html: `<div class ="label-snow" style="background-color:${color}">${feature.properties.HStoFixed(1)}</div>`,
+                    className: "ignore_me" //
+                })
+            })
+        }
+    })
+}
+
+
 
 aws.on("data:loaded", function() {
     //console.log(aws.toGeoJSON());
