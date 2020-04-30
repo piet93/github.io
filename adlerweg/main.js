@@ -35,7 +35,7 @@ L.control.layers({
 
 for (const blick of ADLERBLICKE) {
     //console.log(blick);
-    let mrk = L.marker([blick.lat,blick.lng], {
+    let mrk = L.marker([blick.lat, blick.lng], {
         icon: L.icon({
             iconSize: [32, 37],
             iconAnchor: [16, 37],
@@ -44,10 +44,10 @@ for (const blick of ADLERBLICKE) {
         })
     }).addTo(overlay.adlerblicke);
     //L.marker([blick.lat,blick.lng]).addTo(map);
-    mrk.bindPopup(`Standort ${blick.standort} (${blick.seehoehe}m)`).openPopup();  
+    mrk.bindPopup(`Standort ${blick.standort} (${blick.seehoehe}m)`).openPopup();
 };
 overlay.adlerblicke.addTo(map);
-let drawEtappe = function(nr) {
+let drawEtappe = function (nr) {
     overlay.etappen.clearLayers();
     //console.log(ETAPPEN[nr].track);
     let track = ETAPPEN[nr].track.replace("A", "");
@@ -67,25 +67,35 @@ let drawEtappe = function(nr) {
             shadowUrl: null,
             iconSize: [32, 37],
             iconAnchor: [16, 37],
-          }
+        }
     });
-    
-    gpx.on("loaded", function(evt) {
+
+    gpx.on("loaded", function (evt) {
         map.fitBounds(evt.target.getBounds());
     }).addTo(overlay.etappen);
     overlay.etappen.addTo(map);
+
+    for (const key in ETAPPEN[nr]) {
+        const val = ETAPPEN[nr][key];
+        console.log(`et-${key}`);
+        let elem = document.querySelector(`#et-${key}`);
+        if (elem) {
+            elem.innerHTML = val;
+            console.log(val);
+        }
+    }
 }
 drawEtappe(1);
 let pulldown = document.querySelector("#pulldown");
 //console.log(pulldown);
 
-for (let i = 0; i < ETAPPEN.length; i++) {
+for (let i = 1; i < ETAPPEN.length; i++) {
     const etappe = ETAPPEN[i];
     //console.log(etappe);
     pulldown.innerHTML += `<option value="${i}">${etappe.title}</option>`;
-    
+
 }
-pulldown.onchange = function(evt) {
+pulldown.onchange = function (evt) {
     let nr = evt.target.options[evt.target.options.selectedIndex].value;
     //console.log(nr)
     drawEtappe(nr);
