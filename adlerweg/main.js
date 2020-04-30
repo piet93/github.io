@@ -8,6 +8,8 @@ let map = L.map("map", {
     ]
 });
 
+let overlay = {adlerblicke: L.featureGroup()}
+
 L.control.layers({
     "BasemapAT.grau": L.tileLayer.provider("BasemapAT.grau"),
     "BasemapAT": L.tileLayer.provider("BasemapAT"),
@@ -28,10 +30,16 @@ L.control.layers({
 //console.log(ADLERBLICKE)
 
 for (const blick of ADLERBLICKE) {
-    console.log(blick);
-    let mrk = L.marker([
-        blick.lat,
-        blick.lng
-    ]).addTo(overlay.adlerblicke);
+    //console.log(blick);
+    let mrk = L.marker([blick.lat,blick.lng], {
+        icon: L.icon({
+            iconSize: [32, 37],
+            iconAnchor: [16, 37],
+            popupAnchor: [0, -37],
+            iconUrl: "icon/panoramicview.png"
+        })
+    }).addTo(overlay.adlerblicke);
+    //L.marker([blick.lat,blick.lng]).addTo(map);
     mrk.bindPopup(`Standort ${blick.standort} (${blick.seehoehe}m)`).openPopup();  
 };
+overlay.adlerblicke.addTo(map);
