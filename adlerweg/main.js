@@ -75,4 +75,13 @@ let drawEtappe = function(nr) {
     }).addTo(overlay.etappen);
     overlay.etappen.addTo(map);
 }
-drawEtappe(31);
+drawEtappe(3);
+let pulldown = document.querySelector("#pulldown");
+console.log(pulldown);
+
+for (let i = 0; i < ETAPPEN.length; i++) {
+    const etappe = ETAPPEN[i];
+    console.log(etappe);
+    pulldown.innerHTML += `<option value="${i}">${etappe.title}</option>`;
+    
+}
