@@ -153,3 +153,15 @@ aws.on("data:loaded", function() {
 
     //console.log(COLORS);
 });
+
+let rainviewer = L.control.rainviewer({
+    position: 'bottomleft',
+    nextButtonText: '>',
+    playStopButtonText: 'Start/Stop',
+    prevButtonText: '<',
+    positionSliderLabelText: "Time:",
+    opacitySliderLabelText: "Opacity:",
+    animationInterval: 500,
+    opacity: 0.5
+});
+rainviewer.addTo(map);
