@@ -13,5 +13,4 @@ const EINKEHR = [
     [ "Etappennummer (32)", "Stüdlhütte", "47,054769", "12,680953" ],
     [ "Etappennummer (33)", "Glorer Hütte", "47.031113", "12.715605" ],
     [ "Etappennummer (33)", "Luchknerhaus", "47,020814", "12,687880" ]
-    // u.s.w.
 ];
