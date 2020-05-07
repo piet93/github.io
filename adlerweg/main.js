@@ -84,8 +84,8 @@ let drawEtappe = function (nr) {
         if (elem) {
             elem.innerHTML = val;
             //console.log(val);
-        elem.href = etappenPfad
         }
+        download = document.querySelector("#track").href = etappenPfad;
     }
 }
 drawEtappe(1);
