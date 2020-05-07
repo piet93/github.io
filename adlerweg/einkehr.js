@@ -8,5 +8,10 @@ const EINKEHR = [
     [ "Etappennummer (28)", "Badener Hütte", "47.081128", "47.081128" ],
     [ "Etappennummer (29)", "Venedigerhaus", "47.123304", "12.451420" ],
     [ "Etappennummer (29)", "Matreier Tauernhaus", "47.119115", "12.496004" ],
+    [ "Etappennummer (32)", "Bergeralm", "47,048350", "12,621782" ],
+    [ "Etappennummer (32)", "Moaalm", "47,032404", "12,628645" ],
+    [ "Etappennummer (32)", "Stüdlhütte", "47,054769", "12,680953" ],
+    [ "Etappennummer (33)", "Glorer Hütte", "47.031113", "12.715605" ],
+    [ "Etappennummer (33)", "Luchknerhaus", "47,020814", "12,687880" ]
     // u.s.w.
 ];
