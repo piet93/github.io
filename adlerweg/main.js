@@ -52,8 +52,9 @@ let drawEtappe = function (nr) {
     //console.log(ETAPPEN[nr].track);
     let track = ETAPPEN[nr].track.replace("A", "");
     //console.log(track);
-
-    let gpx = new L.GPX(`gpx/AdlerwegEtappe${track}.gpx`, {
+    let etappenPfad = `gpx/AdlerwegEtappe${track}.gpx`
+    //console.log(etappenPfad)
+    let gpx = new L.GPX(etappenPfad, {
         async: true,
         polyline_options: {
             color: 'black',
@@ -77,12 +78,13 @@ let drawEtappe = function (nr) {
 
     for (const key in ETAPPEN[nr]) {
         const val = ETAPPEN[nr][key].replace(/#/g, ", ");
-        console.log(val);
+        //console.log(val);
         //console.log(`et-${key}`);
         let elem = document.querySelector(`#et-${key}`);
         if (elem) {
             elem.innerHTML = val;
             //console.log(val);
+        elem.href = etappenPfad
         }
     }
 }
